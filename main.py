@@ -1,3 +1,6 @@
+from prompts import SYSTEM_PROMPT
+
+
 from dotenv import load_dotenv
 load_dotenv()
 from anthropic import Anthropic
@@ -9,6 +12,7 @@ with client.messages.stream(
     # model="claude-sonnet-5-5",  # smarter hints, costs more
 
     max_tokens=200,
+    system = SYSTEM_PROMPT,
     messages=[{"role": "user", "content": "hello"}],
 ) as stream:
     response = stream.get_final_message()
